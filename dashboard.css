@@ -1,0 +1,247 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  background-color: #f8f9fa; /* Warna lebih soft dan netral */
+}
+
+/* Sidebar Navigation */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #880b0b; /* Warna merah khas Sampoerna Agro */
+  padding: 20px;
+  color: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: #a02222; /* Warna merah lebih gelap untuk efek hover */
+  color: #ffffff;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.dashboard-header select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Informasi Perusahaan */
+.info-container {
+  background: #ffffff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-container h2 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.info-container p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Peta Interaktif */
+.map-container {
+  background: #ffffff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-container h2 {
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Kontrol Peta */
+.map-controls {
+  margin-bottom: 15px;
+}
+
+.map-controls label {
+  font-size: 14px;
+  color: #333;
+}
+
+.map-controls select {
+  padding: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+/* Pencarian Lokasi */
+.search-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.search-container input {
+  width: 80%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-container button {
+  width: 20%;
+  background: #c32727;
+  border: none;
+  color: white;
+  padding: 8px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+  background: #a02222; /* Warna lebih gelap saat hover */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .search-container input {
+    width: 70%;
+  }
+
+  .search-container button {
+    width: 30%;
+  }
+}
+
+/* Container Logo */
+.logo-container {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Ukuran Logo */
+.logo-container img {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+.account-settings {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.form-container h3 {
+    margin-bottom: 10px;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}

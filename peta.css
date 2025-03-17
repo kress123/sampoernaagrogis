@@ -1,0 +1,191 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+  background-color: #880b0b; /* Warna merah khas Sampoerna Agro */
+    padding: 20px;
+    color: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: #555;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.dashboard-header h1 {
+    font-size: 24px;
+}
+
+.dashboard-header select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Map */
+.map-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 5px;
+}
+.map-container {
+    width: 100%;
+    height: 80vh;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+}
+
+#basemap-select {
+    padding: 5px;
+    font-size: 16px;
+}
+/* Kontainer pencarian */
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+#search-input {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+#search-btn {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background: #1a252f;
+}
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+#search-input {
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+#search-btn {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background: #1a252f;
+}
+/* Container Logo */
+.logo-container {
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Ukuran Logo */
+.logo-container img {
+    width: 150px;  /* Sesuaikan ukuran logo */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
