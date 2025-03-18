@@ -37,19 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     map.addControl(drawControl);
 
-    // === 3. Load Data yang Tersimpan ===
-    function loadDrawings() {
-        var savedData = localStorage.getItem("mapDrawings");
-        if (savedData) {
-            JSON.parse(savedData).forEach(function (geoJson) {
-                var layer = L.geoJSON(geoJson);
-                drawnItems.addLayer(layer);
-            });
-        }
-    }
-    loadDrawings();
-
-    // === 4. Event Ketika Menggambar Objek ===
+    // === 3. Event Ketika Menggambar Objek ===
     map.on("draw:created", function (e) {
         var layer = e.layer;
         drawnItems.addLayer(layer);
@@ -70,80 +58,52 @@ document.addEventListener("DOMContentLoaded", function () {
         layer.bindPopup(formHtml).openPopup();
     });
 
-    // === 5. Fungsi Menyimpan Data Gambar ke localStorage ===
-    function saveDrawingData(lat, lng) {
-        var data = {
-            labId: document.getElementById("labIdInput").value,
-            blok: document.getElementById("blokInput").value,
-            nomorPlot: document.getElementById("nomorPlotInput").value,
-            nomorPokok: document.getElementById("nomorPokokInput").value,
-            nomorDaun: document.getElementById("nomorDaunInput").value,
-            latitude: lat,
-            longitude: lng
-        };
+    // === 4. Fungsi Menyimpan Data ke Database MySQL melalui save_data.php ===
+    window.saveDrawingData = function(lat, lng) {
+        let formData = new FormData();
+        formData.append("labId", document.getElementById("labIdInput").value);
+        formData.append("blok", document.getElementById("blokInput").value);
+        formData.append("nomorPlot", document.getElementById("nomorPlotInput").value);
+        formData.append("nomorPokok", document.getElementById("nomorPokokInput").value);
+        formData.append("nomorDaun", document.getElementById("nomorDaunInput").value);
+        formData.append("latitude", lat);
+        formData.append("longitude", lng);
 
-        var drawings = JSON.parse(localStorage.getItem("mapDrawings")) || [];
-        drawings.push(data);
-        localStorage.setItem("mapDrawings", JSON.stringify(drawings));
+        fetch("save_data.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("Data berhasil disimpan ke database!");
+                window.location.href = "tabel-data.html";
+            } else {
+                alert("Terjadi kesalahan: " + data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    };
 
-        alert("Data berhasil disimpan!");
-    }
+    // === 5. Event Listener untuk Form Input Data ===
+    document.getElementById("koordinatForm").addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    // === 6. Menyimpan Form Input Koordinat ke localStorage ===
-    document.getElementById("koordinatForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+        let formData = new FormData(this);
 
-        var dataKoordinat = {
-            no: document.getElementById("no").value,
-            labId: document.getElementById("labId").value,
-            blok: document.getElementById("blok").value,
-            nomorPlot: document.getElementById("nomorPlot").value,
-            nomorPokok: document.getElementById("nomorPokok").value,
-            nomorDaun: document.getElementById("nomorDaun").value,
-            latitude: parseFloat(document.getElementById("latitude").value),
-            longitude: parseFloat(document.getElementById("longitude").value),
-            n: document.getElementById("n").value,
-            p: document.getElementById("p").value,
-            k: document.getElementById("k").value,
-            ca: document.getElementById("ca").value,
-            mg: document.getElementById("mg").value,
-            b: document.getElementById("b").value
-        };
-
-        var koordinatList = JSON.parse(localStorage.getItem("koordinatData")) || [];
-        koordinatList.push(dataKoordinat);
-        localStorage.setItem("koordinatData", JSON.stringify(koordinatList));
-
-        alert("Data berhasil disimpan dan ditampilkan di tabel-data.html!");
-        window.location.href = "tabel-data.html";
+        fetch("save_data.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("Data berhasil disimpan ke database!");
+                window.location.href = "tabel-data.html";
+            } else {
+                alert("Terjadi kesalahan: " + data.message);
+            }
+        })
+        .catch(error => console.error("Error:", error));
     });
-
-    // === 7. Perbaiki Link ke Dashboard Admin ===
-    const dashboardAdminLink = document.querySelector(".sidebar a[href='dashboard-admin.html']");
-    if (dashboardAdminLink) {
-        dashboardAdminLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            window.location.href = "dashboard-admin.html";
-        });
-    }
-});
-document.getElementById("koordinatForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    let formData = new FormData(this);
-
-    fetch("save_data.php", {
-        method: "POST",
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            alert("Data berhasil disimpan!");
-            window.location.href = "tabel-data.html";
-        } else {
-            alert("Terjadi kesalahan: " + data.message);
-        }
-    })
-    .catch(error => console.error("Error:", error));
 });
