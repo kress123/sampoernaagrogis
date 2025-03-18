@@ -127,3 +127,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+document.getElementById("koordinatForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("save_data.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Data berhasil disimpan!");
+            window.location.href = "tabel-data.html";
+        } else {
+            alert("Terjadi kesalahan: " + data.message);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
