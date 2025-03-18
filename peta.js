@@ -121,3 +121,29 @@ document.addEventListener("DOMContentLoaded", function () {
     // Panggil fungsi untuk menampilkan data di peta saat halaman dimuat
     updateMap();
 });
+function loadMarkers() {
+    fetch("get_data.php")
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(item => {
+            L.marker([item.latitude, item.longitude]).addTo(map)
+                .bindPopup(`
+                    <b>Lab ID:</b> ${item.labId} <br>
+                    <b>Blok:</b> ${item.blok} <br>
+                    <b>Nomor Plot:</b> ${item.nomorPlot} <br>
+                    <b>Nomor Pokok:</b> ${item.nomorPokok} <br>
+                    <b>Nomor Daun:</b> ${item.nomorDaun} <br>
+                    <b>N%:</b> ${item.n} <br>
+                    <b>P%:</b> ${item.p} <br>
+                    <b>K%:</b> ${item.k} <br>
+                    <b>Ca%:</b> ${item.ca} <br>
+                    <b>Mg%:</b> ${item.mg} <br>
+                    <b>B (ppm):</b> ${item.b}
+                `);
+        });
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+// Panggil fungsi untuk menampilkan data di peta
+loadMarkers();
